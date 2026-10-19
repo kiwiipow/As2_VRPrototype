@@ -583,7 +583,7 @@ MonoBehaviour:
         description: API layer that providing agentic interface for OpenXR
       m_JsonFileName: XrApiLayer_METAX_operator.json
       m_LibraryArchitecture: 1
-      m_IsEnabled: 0
+      m_IsEnabled: 1
 --- !u!114 &-4740220987525435388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1909,7 +1909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feeef8d85de8db242bdda70cc7ff5acd, type: 3}
   m_Name: OculusTouchControllerProfile Android
   m_EditorClassIdentifier: Unity.XR.OpenXR::UnityEngine.XR.OpenXR.Features.Interactions.OculusTouchControllerProfile
-  m_enabled: 0
+  m_enabled: 1
   nameUi: Oculus Touch Controller Profile
   version: 0.0.1
   featureIdInternal: com.unity.openxr.feature.input.oculustouch
