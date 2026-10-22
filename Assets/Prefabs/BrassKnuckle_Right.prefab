@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Meta.XR.BuildingBlocks::Meta.XR.BuildingBlocks.BuildingBlock
   blockId: 7358e191-33b7-43ca-b066-b2f00531ac66
-  instanceId: c2cfe13a-af5a-4828-b1a8-7b01c89e96c1
+  instanceId: c0b0085a-1fe7-44cb-bd4b-ad94250312bb
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 
@@ -160,7 +160,7 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
-  _rigidbody: {fileID: 0}
+  _rigidbody: {fileID: 3903272012938788097}
   _kinematicWhileSelected: 1
   _throwWhenUnselected: 1
   _forceKinematicDisabled: 0
