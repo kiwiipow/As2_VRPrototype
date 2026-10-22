@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class PointCounter : MonoBehaviour
 {
@@ -11,16 +12,23 @@ public class PointCounter : MonoBehaviour
     [SerializeField] private float comboTimeMargin = 1f;
     [SerializeField] private float transferSpeed = 200f;
 
+    [Header("UI References")]
+    [SerializeField] private TextMeshProUGUI mainScoreText;
+    [SerializeField] private TextMeshProUGUI pendingPointsText;
+
     private float inactiveTimer;
     private bool isTransferring = false;
 
     void Start()
     {
         inactiveTimer = comboTimeMargin;
+        UpdateUI();
     }
 
     void Update()
     {
+        bool valuesChanged = false;
+
         if (pendingPoints > 0)
         {
             if (!isTransferring)
@@ -39,6 +47,7 @@ public class PointCounter : MonoBehaviour
 
                 currentMainScore += transferAmount;
                 pendingPoints -= transferAmount;
+                valuesChanged = true;
 
                 if (pendingPoints <= 0)
                 {
@@ -47,18 +56,44 @@ public class PointCounter : MonoBehaviour
                 }
             }
         }
+
+        if (valuesChanged)
+        {
+            UpdateUI();
+        }
     }
 
     public void AddPoints(int amount)
     {
         pendingPoints += amount;
-
         inactiveTimer = comboTimeMargin;
 
         if (isTransferring)
         {
             isTransferring = false;
         }
+
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        if (mainScoreText != null)
+        {
+            mainScoreText.text = currentMainScore.ToString();
+        }
+
+        if (pendingPointsText != null)
+        {
+            if (pendingPoints > 0)
+            {
+                pendingPointsText.gameObject.SetActive(true);
+                pendingPointsText.text = "+ " + pendingPoints;
+            }
+            else
+            {
+                pendingPointsText.gameObject.SetActive(false);
+            }
+        }
     }
 }
-
