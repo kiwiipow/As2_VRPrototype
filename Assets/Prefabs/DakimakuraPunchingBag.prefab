@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 6572391811251289114}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.192, z: -0.172}
+  m_LocalPosition: {x: -0.012, y: 0.213, z: -0.172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -52,7 +52,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.12, y: 0.12, z: 0.05}
+  m_Size: {x: 0.15, y: 0.1, z: 0.05}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4655279621410354614
 MonoBehaviour:
@@ -444,7 +444,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -464,7 +464,7 @@ ConfigurableJoint:
   serializedVersion: 4
   m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 0.76, z: 0}
+  m_Anchor: {x: 0, y: 0.65, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
@@ -592,14 +592,15 @@ MonoBehaviour:
     m_Bits: 128
   fadeInDuration: 0.5
   fadeOutDelay: 0.5
-  fadeOutDuration: 0.5
+  fadeOutDuration: 0.7
   normalHitParticlePrefab: {fileID: 7091223262874451105, guid: 24ca15efeaf6b874d80f5d22a2aa3fb6, type: 3}
   multiplierHitParticlePrefab: {fileID: 1951715920128994531, guid: 9fc4243cb35d5874e84c898ed004ce6b, type: 3}
   audioSource: {fileID: 5202964502664018032}
   normalHitClip: {fileID: 8300000, guid: 3d85dea16d561584bbe9f44c605c1f86, type: 3}
   multiplierHitClip: {fileID: 8300000, guid: 6c5b05ce75da2fa4394f2ec284e383c9, type: 3}
-  bagNormalHitClip: {fileID: 8300000, guid: 61a34f7283998cd40b1d01b77be8d609, type: 3}
-  bagMultiplierHitClip: {fileID: 8300000, guid: 2ca6bfe9a63940c4288ea6372b078f36, type: 3}
+  bagNormalHitClip: {fileID: 8300000, guid: 94400bad6297d264c833499588b68715, type: 3}
+  bagMultiplierHitClip: {fileID: 8300000, guid: 84cc63a9f94ab9742824e4aa5bd6b912, type: 3}
+  deathClip: {fileID: 8300000, guid: 80c78bccc59aa3240ab4d23c0c4207ba, type: 3}
   minPitch: 0.8
   maxPitch: 1.2
   minVolume: 0.3

@@ -1,0 +1,285 @@
+fileFormatVersion: 2
+guid: 0be111d8d3348b844810801c4c38cc4b
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BG_c
+    second: {fileID: 2100000, guid: 7ca53cdae8142ac45997113eff93024f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CLOUD1
+    second: {fileID: 2100000, guid: 199ca06db54dd59478266465eb95fe9d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_box02
+    second: {fileID: 2100000, guid: fa01482a91fad9543a4c04f090507709, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_box_blue
+    second: {fileID: 2100000, guid: f3b935cb3d812444181f5494db63341e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_box_red
+    second: {fileID: 2100000, guid: 48db1eb78189dd14e8dcfb2bdd335a30, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_box_white
+    second: {fileID: 2100000, guid: 632c6f0d6a96f7a41995cd77b26a5ee3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SHIBA_a
+    second: {fileID: 2100000, guid: 45898945bb3ad484182882d67c7e10be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: S_tree
+    second: {fileID: 2100000, guid: 935a8c11e5b28f843b5b8ecfd87d119f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WALL2_a
+    second: {fileID: 2100000, guid: edf3ccafc79050549a31f43eb6dcd458, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WALL2_d
+    second: {fileID: 2100000, guid: 6c05977d7ee58f84bae2b3a9a8038442, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ball_shadow
+    second: {fileID: 2100000, guid: 5649bc65cba31dc41a7206a6e0e9ef4c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: box_gym_cup
+    second: {fileID: 2100000, guid: bf560c4f95b12504db83da528f23da6f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: box_gym_door01
+    second: {fileID: 2100000, guid: 69f6d526b28208f448f9f80f4e337dd0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: box_gym_floor1
+    second: {fileID: 2100000, guid: f19ed4efb94c9bb4188f1b60edaac43d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: box_gym_pos
+    second: {fileID: 2100000, guid: 5252ea98f547e2b4199a7f50d732e2bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: box_gym_rocker
+    second: {fileID: 2100000, guid: 99ea46c2df33ad240a13da628dc935f9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: box_gym_rope01
+    second: {fileID: 2100000, guid: fbb8fe3c19f809f479d085dc561faca7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: box_gym_shadow01
+    second: {fileID: 2100000, guid: 0b2f7db194e1dac4cbcebe5334f2fb3f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: box_gym_tenjou
+    second: {fileID: 2100000, guid: e03de2cf697f33f449c31b449424d2c7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: box_gym_wall01
+    second: {fileID: 2100000, guid: 20b0abd06566bef41a5302b1d71b5113, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: box_gym_wall02
+    second: {fileID: 2100000, guid: 0c5e0b779b1670b48b10a134f53abf43, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: box_gym_window01
+    second: {fileID: 2100000, guid: 52a9361f504d4e345bfa3a8312584856, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: box_gym_window02
+    second: {fileID: 2100000, guid: 5fe3fa6f2b0801a40981ce3a64cfc548, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: box_gym_wood01
+    second: {fileID: 2100000, guid: 1e44973de038cde408229aaaf626b546, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: box_gym_wood03
+    second: {fileID: 2100000, guid: 661c7173763e0c84b87c21d79b6823b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: box_logo_wii
+    second: {fileID: 2100000, guid: 6524a9a14239d4d45958d1f47b65bda6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: box_rope_shade
+    second: {fileID: 2100000, guid: ec7ea58d9610a4f4aa67c50e6f7d050c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gym_ringside
+    second: {fileID: 2100000, guid: 98bab705c0090b54a9a30701eeac3e80, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: net_b
+    second: {fileID: 2100000, guid: baf94bb7dd22ae64880b74bc6fd2469a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ring_floor
+    second: {fileID: 2100000, guid: 0402a48e12ad1e84ea959e760c6758c7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rope_kage
+    second: {fileID: 2100000, guid: d872da7f775ae5c45b2dc2f521cb4c85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sky_a
+    second: {fileID: 2100000, guid: 4d1ef42deb8d2a04d982ad28da882e37, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tree_a
+    second: {fileID: 2100000, guid: c49e8b6f2cbebaa4ebc7c0367efb9bd6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tree_b
+    second: {fileID: 2100000, guid: f204e254f09623f44b0b26b9fd528599, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tree_c
+    second: {fileID: 2100000, guid: 537fa6effc7381842b987261b0d27d34, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 1
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

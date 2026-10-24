@@ -19,6 +19,7 @@ public class PunchBagGenerator : MonoBehaviour
     [Header("Spawn Point")]
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Rigidbody ceilingAnchorRigidbody;
+    [SerializeField] private PunchBagChain chain;
 
     [Header("Generator Settings")]
     [SerializeField, Min(0f)] private float respawnDelay = 2f;
@@ -35,6 +36,9 @@ public class PunchBagGenerator : MonoBehaviour
     {
         if (spawnPoint == null)
             spawnPoint = transform;
+
+        if (chain != null)
+            chain.Build(ceilingAnchorRigidbody);
 
         if (spawnOnStart)
             SpawnPunchingBag();
@@ -65,7 +69,15 @@ public class PunchBagGenerator : MonoBehaviour
         }
 
         currentBag = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
-        currentBag.AttachToAnchor(ceilingAnchorRigidbody);
+        if (chain != null && chain.IsBuilt)
+        {
+            currentBag.SnapHookTo(chain.EndPosition);
+            currentBag.AttachToAnchor(chain.End);
+        }
+        else
+        {
+            currentBag.AttachToAnchor(ceilingAnchorRigidbody);
+        }
         currentBag.OnBagDestroyed += HandleBagDestroyed;
 
         if (fadeInOnSpawn)
