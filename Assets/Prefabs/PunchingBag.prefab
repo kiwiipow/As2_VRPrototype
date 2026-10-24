@@ -534,7 +534,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8394340676998794467}
   serializedVersion: 5
-  m_Mass: 30
+  m_Mass: 20
   m_LinearDamping: 0.05
   m_AngularDamping: 0.15
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -566,7 +566,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -586,7 +586,7 @@ ConfigurableJoint:
   serializedVersion: 4
   m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 0.76, z: 0}
+  m_Anchor: {x: 0, y: 0.65, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
@@ -720,6 +720,9 @@ MonoBehaviour:
   audioSource: {fileID: 783885372232539896}
   normalHitClip: {fileID: 8300000, guid: 3d85dea16d561584bbe9f44c605c1f86, type: 3}
   multiplierHitClip: {fileID: 8300000, guid: 6c5b05ce75da2fa4394f2ec284e383c9, type: 3}
+  bagNormalHitClip: {fileID: 0}
+  bagMultiplierHitClip: {fileID: 0}
+  deathClip: {fileID: 0}
   minPitch: 0.8
   maxPitch: 1.2
   minVolume: 0.3

@@ -103,6 +103,7 @@ public class PunchingBag : MonoBehaviour
     public float DurabilityNormalized => (float)currentDurability / maxDurability;
     public bool IsDead => isDead;
     public ConfigurableJoint Joint => joint;
+    public Vector3 HookWorldPosition => joint != null ? joint.transform.TransformPoint(joint.anchor) : transform.position;
 
     private void Awake()
     {
@@ -148,6 +149,11 @@ public class PunchingBag : MonoBehaviour
         }
 
         materialEntries.Clear();
+    }
+
+    public void SnapHookTo(Vector3 worldPosition)
+    {
+        transform.position += worldPosition - HookWorldPosition;
     }
 
     public void AttachToAnchor(Rigidbody anchor)
