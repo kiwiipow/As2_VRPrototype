@@ -16,12 +16,24 @@ public class PointCounter : MonoBehaviour
     [SerializeField] private TextMeshProUGUI mainScoreText;
     [SerializeField] private TextMeshProUGUI pendingPointsText;
 
+    [Header("Popup Animation Settings")]
+    [SerializeField] private float popupScaleMultiplier = 1.3f;
+    [SerializeField] private float popupDuration = 0.15f;
+
     private float inactiveTimer;
     private bool isTransferring = false;
+    private Vector3 pendingOriginalScale = Vector3.one;
+    private Coroutine popupCoroutine;
 
     void Start()
     {
         inactiveTimer = comboTimeMargin;
+
+        if (pendingPointsText != null)
+        {
+            pendingOriginalScale = pendingPointsText.transform.localScale;
+        }
+
         UpdateUI();
     }
 
@@ -74,6 +86,16 @@ public class PointCounter : MonoBehaviour
         }
 
         UpdateUI();
+
+        // Trigger pop-up effect on the pending points text
+        if (pendingPointsText != null)
+        {
+            if (popupCoroutine != null)
+            {
+                StopCoroutine(popupCoroutine);
+            }
+            popupCoroutine = StartCoroutine(PopupAnimation(pendingPointsText.transform));
+        }
     }
 
     private void UpdateUI()
@@ -95,5 +117,32 @@ public class PointCounter : MonoBehaviour
                 pendingPointsText.gameObject.SetActive(false);
             }
         }
+    }
+
+    private IEnumerator PopupAnimation(Transform targetTransform)
+    {
+        float elapsedTime = 0f;
+        Vector3 targetScale = pendingOriginalScale * popupScaleMultiplier;
+
+        // Scale up quickly
+        while (elapsedTime < popupDuration / 2f)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / (popupDuration / 2f);
+            targetTransform.localScale = Vector3.Lerp(pendingOriginalScale, targetScale, t);
+            yield return null;
+        }
+
+        elapsedTime = 0f;
+        // Scale back down to normal
+        while (elapsedTime < popupDuration / 2f)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / (popupDuration / 2f);
+            targetTransform.localScale = Vector3.Lerp(targetScale, pendingOriginalScale, t);
+            yield return null;
+        }
+
+        targetTransform.localScale = pendingOriginalScale;
     }
 }

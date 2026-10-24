@@ -1,0 +1,127 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class TimerVisualizer : MonoBehaviour
+{
+    [Header("References")]
+    [SerializeField] private GameTimer gameTimer;
+    [SerializeField] private Image radialImage; 
+
+    [Header("Color Settings")]
+    [SerializeField] private Color safeColor = Color.green;
+    [SerializeField] private Color warningYellow = Color.yellow;
+    [SerializeField] private Color warningOrange = new Color(1f, 0.5f, 0f);
+    [SerializeField] private Color dangerRed = Color.red;
+    [SerializeField] private float colorTransitionStart = 0.5f;
+
+    [Header("Pop / Pulse Settings (End Game)")]
+    [SerializeField] private float pulseStartThreshold = 0.25f;
+    [SerializeField] private float maxPulseScale = 1.25f;       
+    [SerializeField] private float minPulseInterval = 0.1f;   
+    [SerializeField] private float maxPulseInterval = 0.8f;   
+
+    private float initialDuration;
+    private Vector3 originalScale;
+    private float pulseTimer;
+
+    void Start()
+    {
+        if (gameTimer != null)
+        {
+            initialDuration = gameTimer.timeRemaining;
+            gameTimer.OnTimeChanged += UpdateVisual;
+        }
+
+        if (radialImage != null)
+        {
+            radialImage.fillAmount = 1f;
+            radialImage.color = safeColor;
+            originalScale = radialImage.transform.localScale;
+        }
+    }
+
+    private void UpdateVisual(float currentTime)
+    {
+        if (radialImage == null || initialDuration <= 0) return;
+
+        float timeRatio = Mathf.Clamp01(currentTime / initialDuration);
+
+        radialImage.fillAmount = timeRatio;
+
+        if (timeRatio > colorTransitionStart)
+        {
+            radialImage.color = safeColor;
+        }
+        else
+        {
+            float colorProgress = 1f - (timeRatio / colorTransitionStart);
+
+            if (colorProgress < 0.5f)
+            {
+                float t = colorProgress * 2f; 
+                radialImage.color = Color.Lerp(warningYellow, warningOrange, t);
+            }
+            else
+            {
+                float t = (colorProgress - 0.5f) * 2f; 
+                radialImage.color = Color.Lerp(warningOrange, dangerRed, t);
+            }
+        }
+
+        if (timeRatio <= pulseStartThreshold && timeRatio > 0f)
+        {
+            float dangerFactor = 1f - (timeRatio / pulseStartThreshold);
+
+            float currentInterval = Mathf.Lerp(maxPulseInterval, minPulseInterval, dangerFactor);
+
+            pulseTimer += Time.deltaTime;
+            if (pulseTimer >= currentInterval)
+            {
+                pulseTimer = 0f;
+
+                float currentPopDuration = Mathf.Lerp(0.3f, 0.08f, dangerFactor);
+                StartCoroutine(PulseAnimation(radialImage.transform, currentPopDuration));
+            }
+        }
+        else
+        {
+            radialImage.transform.localScale = originalScale;
+        }
+    }
+
+    private System.Collections.IEnumerator System_IEnumerator_Placeholder() { yield return null; }
+
+    private System.Collections.IEnumerator PulseAnimation(Transform target, float duration)
+    {
+        float elapsed = 0f;
+        Vector3 targetScale = originalScale * maxPulseScale;
+
+        while (elapsed < duration / 2f)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / (duration / 2f);
+            target.localScale = Vector3.Lerp(originalScale, targetScale, t);
+            yield return null;
+        }
+
+        elapsed = 0f;
+
+        while (elapsed < duration / 2f)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / (duration / 2f);
+            target.localScale = Vector3.Lerp(targetScale, originalScale, t);
+            yield return null;
+        }
+
+        target.localScale = originalScale;
+    }
+
+    void OnDestroy()
+    {
+        if (gameTimer != null)
+        {
+            gameTimer.OnTimeChanged -= UpdateVisual;
+        }
+    }
+}
