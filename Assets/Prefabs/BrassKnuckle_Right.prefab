@@ -11,12 +11,10 @@ GameObject:
   - component: {fileID: 7688862211210029797}
   - component: {fileID: 2470922981366194785}
   - component: {fileID: 7190440725146030880}
-  - component: {fileID: 4734935764030198208}
   - component: {fileID: 3903272012938788097}
   - component: {fileID: 5754982210710670334}
   - component: {fileID: 4140794355856880669}
-  - component: {fileID: 5679198042901511071}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BrassKnuckle_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,24 +94,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4734935764030198208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1577862768142172180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Meta.XR.BuildingBlocks::Meta.XR.BuildingBlocks.BuildingBlock
-  blockId: 7358e191-33b7-43ca-b066-b2f00531ac66
-  instanceId: c0b0085a-1fe7-44cb-bd4b-ad94250312bb
-  version: 1
-  installationRoutineCheckpoint:
-    _installationRoutineId: 
-    _installationVariants: []
 --- !u!54 &3903272012938788097
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -148,7 +128,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577862768142172180}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
   m_Name: 
@@ -185,43 +165,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.085471354, y: 0.020009056, z: 0.048900023}
   m_Center: {x: 0.00044675544, y: -0.000007628462, z: 0.0025910572}
---- !u!114 &5679198042901511071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1577862768142172180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.InteractableUnityEventWrapper
-  _interactableView: {fileID: 0}
-  _whenHover:
-    m_PersistentCalls:
-      m_Calls: []
-  _whenUnhover:
-    m_PersistentCalls:
-      m_Calls: []
-  _whenSelect:
-    m_PersistentCalls:
-      m_Calls: []
-  _whenUnselect:
-    m_PersistentCalls:
-      m_Calls: []
-  _whenInteractorViewAdded:
-    m_PersistentCalls:
-      m_Calls: []
-  _whenInteractorViewRemoved:
-    m_PersistentCalls:
-      m_Calls: []
-  _whenSelectingInteractorViewAdded:
-    m_PersistentCalls:
-      m_Calls: []
-  _whenSelectingInteractorViewRemoved:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &6782535397778490643
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,13 +176,13 @@ GameObject:
   - component: {fileID: 527677264904898724}
   - component: {fileID: 7460731240827713399}
   - component: {fileID: 8938522501661656086}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ISDK_HandGrabInteraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &527677264904898724
 Transform:
   m_ObjectHideFlags: 0

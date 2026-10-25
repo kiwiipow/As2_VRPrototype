@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 8609278167169541075}
   - component: {fileID: 3535677808298212730}
   - component: {fileID: 9106559527013023616}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ISDK_HandGrabInteraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8609278167169541075
 Transform:
   m_ObjectHideFlags: 0
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 4491959223660966492}
   - component: {fileID: 4705461984754596604}
   - component: {fileID: 8884087154235639869}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BoxingGlove_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
