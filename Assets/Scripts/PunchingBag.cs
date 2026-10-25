@@ -78,6 +78,7 @@ public class PunchingBag : MonoBehaviour
     }
 
     private const string TransparentKeyword = "_SURFACE_TYPE_TRANSPARENT";
+    private const float ChainProjectionDistance = 0.005f;
 
     private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
     private static readonly int SurfaceId = Shader.PropertyToID("_Surface");
@@ -166,6 +167,13 @@ public class PunchingBag : MonoBehaviour
         joint.autoConfigureConnectedAnchor = false;
         joint.connectedBody = anchor;
         joint.connectedAnchor = anchor.transform.InverseTransformPoint(worldAnchor);
+
+        if (!anchor.isKinematic)
+        {
+            joint.enablePreprocessing = false;
+            joint.projectionMode = JointProjectionMode.PositionAndRotation;
+            joint.projectionDistance = ChainProjectionDistance;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

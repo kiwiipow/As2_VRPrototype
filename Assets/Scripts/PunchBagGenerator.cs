@@ -73,6 +73,7 @@ public class PunchBagGenerator : MonoBehaviour
         {
             currentBag.SnapHookTo(chain.EndPosition);
             currentBag.AttachToAnchor(chain.End);
+            chain.SetLoaded(true);
         }
         else
         {
@@ -145,6 +146,9 @@ public class PunchBagGenerator : MonoBehaviour
 
     private void HandleBagDestroyed(PunchingBag bag)
     {
+        if (chain != null)
+            chain.SetLoaded(false);
+
         if (bag != null)
         {
             TotalPoints += bag.PointsForDefeating;
