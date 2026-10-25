@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,6 +29,7 @@ public class PunchBagGenerator : MonoBehaviour
 
     [Header("Point managing")]
     public int TotalPoints = 0;
+    [SerializeField] private PointCounter pointCounter;
 
     private PunchingBag currentBag;
     private Coroutine respawnRoutine;
@@ -151,6 +153,7 @@ public class PunchBagGenerator : MonoBehaviour
 
         if (bag != null)
         {
+            pointCounter.AddPoints(bag.PointsForDefeating);
             TotalPoints += bag.PointsForDefeating;
             bag.OnBagDestroyed -= HandleBagDestroyed;
         }
