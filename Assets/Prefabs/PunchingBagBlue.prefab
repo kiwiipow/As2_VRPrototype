@@ -727,7 +727,7 @@ MonoBehaviour:
   maxPitch: 1
   minVolume: 0.3
   maxVolume: 1
-  PointsForDefeating: 1
+  PointsForDefeating: 2
 --- !u!82 &5040244791637076529
 AudioSource:
   m_ObjectHideFlags: 0
