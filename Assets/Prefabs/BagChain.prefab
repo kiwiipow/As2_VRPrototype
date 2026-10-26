@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1279056649120358049}
   - component: {fileID: 6679534163927036998}
   - component: {fileID: 2367825405063997573}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: BagChain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
