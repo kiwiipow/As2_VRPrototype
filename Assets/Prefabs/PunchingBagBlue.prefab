@@ -728,6 +728,7 @@ MonoBehaviour:
   minVolume: 0.3
   maxVolume: 1
   PointsForDefeating: 2
+  popUpTextPrefab: {fileID: 696911766723704950, guid: dbd63df09463703458144c7bb1accc6d, type: 3}
 --- !u!82 &5040244791637076529
 AudioSource:
   m_ObjectHideFlags: 0

@@ -107,6 +107,9 @@ public class PunchingBag : MonoBehaviour
     public ConfigurableJoint Joint => joint;
     public Vector3 HookWorldPosition => joint != null ? joint.transform.TransformPoint(joint.anchor) : transform.position;
 
+    [Header("Popup Text")]
+    [SerializeField] private PopupText popUpTextPrefab;
+
     private void Awake()
     {
         currentDurability = maxDurability;
@@ -255,6 +258,8 @@ public class PunchingBag : MonoBehaviour
         PlayImpactEffects(speed, zoneMultiplier, lastHitDirection, worldPoint, gloveCollider);
 
         OnHit?.Invoke(new HitInfo(damage, speed, zoneMultiplier, lastHitDirection, worldPoint));
+
+        popUpTextPrefab.SetText(damage.ToString());
 
         if (currentDurability <= 0)
             Die();
