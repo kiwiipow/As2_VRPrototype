@@ -26,4 +26,9 @@ public class PopupText : MonoBehaviour
     {
         myText.text = text;
     }
+
+    public void ChangeColor(Color color)
+    {
+        myText.color = color;
+    }
 }

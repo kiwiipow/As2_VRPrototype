@@ -109,6 +109,7 @@ public class PunchingBag : MonoBehaviour
 
     [Header("Popup Text")]
     [SerializeField] private PopupText popUpTextPrefab;
+    [SerializeField] private Color multiplierColor = Color.red;
 
     private void Awake()
     {
@@ -259,7 +260,15 @@ public class PunchingBag : MonoBehaviour
 
         OnHit?.Invoke(new HitInfo(damage, speed, zoneMultiplier, lastHitDirection, worldPoint));
 
-        popUpTextPrefab.SetText(damage.ToString());
+        if (popUpTextPrefab != null)
+        {
+            PopupText popupInstance = Instantiate(popUpTextPrefab, worldPoint, Quaternion.identity);
+            popupInstance.SetText(damage.ToString());
+            if (zoneMultiplier > 1f)
+            {
+                popupInstance.ChangeColor(multiplierColor);
+            }
+        }
 
         if (currentDurability <= 0)
             Die();

@@ -729,6 +729,7 @@ MonoBehaviour:
   maxVolume: 1
   PointsForDefeating: 1
   popUpTextPrefab: {fileID: 696911766723704950, guid: dbd63df09463703458144c7bb1accc6d, type: 3}
+  multiplierColor: {r: 0.735849, g: 0.12148449, b: 0.12148449, a: 1}
 --- !u!82 &783885372232539896
 AudioSource:
   m_ObjectHideFlags: 0
