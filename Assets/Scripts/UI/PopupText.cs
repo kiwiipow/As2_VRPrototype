@@ -9,6 +9,12 @@ public class PopupText : MonoBehaviour
     [SerializeField] private float lifetime = 1f;
 
     private float currentLifetime = 0f;
+    private Camera mainCamera;
+
+    void Start()
+    {
+        mainCamera = Camera.main;
+    }
 
     void Update()
     {
@@ -20,6 +26,16 @@ public class PopupText : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    void LateUpdate()
+    {
+        if (mainCamera == null) return;
+
+        transform.LookAt(
+            transform.position + mainCamera.transform.rotation * Vector3.forward,
+            mainCamera.transform.rotation * Vector3.up
+        );
     }
 
     public void SetText(string text)
