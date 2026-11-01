@@ -16,8 +16,6 @@ public class GrabGloves : MonoBehaviour
     bool isKinematic;
     bool hasGravity;
     public Vector3 heldRotation;
-
-  
     void Update()
     {
         if(held == null && OVRInput.GetDown(grabButton, controller))
@@ -66,17 +64,11 @@ public class GrabGloves : MonoBehaviour
         held.useGravity = false;
         held.transform.SetParent(transform, true);
         held.transform.localRotation = Quaternion.Euler(heldRotation.x, heldRotation.y, heldRotation.z);
-
-        //held.transform.GetChild(0).gameObject.SetActive(true);
-        ////held.gameObject.GetComponent<"Grabbable">().enabled = true;
-        //held.gameObject.GetComponent<Oculus.Interaction.Grabbable> ();
     }
 
     void Release()
     {
         held.transform.SetParent(originalParent, true);
-        //held.transform.GetChild(0).gameObject.SetActive(false);
-        //held.gameObject.GetComponent<OVRGrabbable>().enabled = false;
         held.isKinematic = false;
         held.useGravity = true;
         held.linearVelocity = dropVelocity;
