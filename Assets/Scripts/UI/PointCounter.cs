@@ -87,7 +87,6 @@ public class PointCounter : MonoBehaviour
 
         UpdateUI();
 
-        // Trigger pop-up effect on the pending points text
         if (pendingPointsText != null)
         {
             if (popupCoroutine != null)
@@ -124,7 +123,6 @@ public class PointCounter : MonoBehaviour
         float elapsedTime = 0f;
         Vector3 targetScale = pendingOriginalScale * popupScaleMultiplier;
 
-        // Scale up quickly
         while (elapsedTime < popupDuration / 2f)
         {
             elapsedTime += Time.deltaTime;
@@ -134,7 +132,6 @@ public class PointCounter : MonoBehaviour
         }
 
         elapsedTime = 0f;
-        // Scale back down to normal
         while (elapsedTime < popupDuration / 2f)
         {
             elapsedTime += Time.deltaTime;
