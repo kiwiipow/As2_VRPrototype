@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 [System.Serializable]
 public class PunchingBagSpawnEntry
 {
     public PunchingBag prefab;
-
     [Min(0f)] public float weight = 1f;
 }
 
@@ -23,13 +22,25 @@ public class PunchBagGenerator : MonoBehaviour
     [SerializeField] private PunchBagChain chain;
 
     [Header("Generator Settings")]
-    [SerializeField, Min(0f)] private float respawnDelay = 2f;
     [SerializeField] private bool spawnOnStart = true;
     [SerializeField] private bool fadeInOnSpawn = true;
 
     [Header("Point managing")]
     public int TotalPoints = 0;
     [SerializeField] private PointCounter pointCounter;
+
+    [Header("Timer managing")]
+    public bool firstHitEfectuated = false;
+
+    [Header("External Impact Effects (Vignette & Bloom)")]
+    [SerializeField] private Volume postProcessVolume;
+    [SerializeField, Range(0f, 1f)] private float maxVignetteIntensity = 0.5f;
+    [SerializeField, Range(0f, 20f)] private float maxBloomIntensity = 2.5f;
+    [SerializeField, Range(0.05f, 0.5f)] private float flashDuration = 0.15f;
+
+    private Coroutine effectRoutine;
+    private Vignette vignetteComponent;
+    private Bloom bloomComponent;
 
     private PunchingBag currentBag;
     private Coroutine respawnRoutine;
@@ -42,6 +53,19 @@ public class PunchBagGenerator : MonoBehaviour
         if (chain != null)
             chain.Build(ceilingAnchorRigidbody);
 
+        if (postProcessVolume != null && postProcessVolume.profile != null)
+        {
+            if (postProcessVolume.profile.TryGet(out vignetteComponent))
+            {
+                vignetteComponent.intensity.overrideState = true;
+            }
+
+            if (postProcessVolume.profile.TryGet(out bloomComponent))
+            {
+                bloomComponent.intensity.overrideState = true;
+            }
+        }
+
         if (spawnOnStart)
             SpawnPunchingBag();
     }
@@ -49,7 +73,10 @@ public class PunchBagGenerator : MonoBehaviour
     private void OnDestroy()
     {
         if (currentBag != null)
+        {
             currentBag.OnBagDestroyed -= HandleBagDestroyed;
+            currentBag.OnHit -= HandleBagHit;
+        }
     }
 
     public void SpawnPunchingBag()
@@ -82,6 +109,7 @@ public class PunchBagGenerator : MonoBehaviour
             currentBag.AttachToAnchor(ceilingAnchorRigidbody);
         }
         currentBag.OnBagDestroyed += HandleBagDestroyed;
+        currentBag.OnHit += HandleBagHit;
 
         if (fadeInOnSpawn)
             currentBag.StartFadeIn();
@@ -146,6 +174,73 @@ public class PunchBagGenerator : MonoBehaviour
         }
     }
 
+    private void HandleBagHit(PunchingBag.HitInfo hitInfo)
+    {
+        if (!firstHitEfectuated)
+        {
+            firstHitEfectuated = true;
+
+            // Start the timer here guillem
+        }
+
+        if (effectRoutine != null)
+            StopCoroutine(effectRoutine);
+
+        effectRoutine = StartCoroutine(TriggerImpactEffectsRoutine());
+    }
+
+    private IEnumerator TriggerImpactEffectsRoutine()
+    {
+        float initialVignette = 0f;
+        float initialBloom = 0f;
+
+        if (vignetteComponent != null)
+        {
+            initialVignette = vignetteComponent.intensity.value;
+            vignetteComponent.intensity.value = maxVignetteIntensity;
+        }
+
+        if (bloomComponent != null)
+        {
+            initialBloom = bloomComponent.intensity.value;
+            bloomComponent.intensity.value = maxBloomIntensity;
+        }
+
+        yield return new WaitForSecondsRealtime(flashDuration);
+
+        float elapsed = 0f;
+        float fadeDuration = 0.2f;
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = elapsed / fadeDuration;
+
+            if (vignetteComponent != null)
+            {
+                vignetteComponent.intensity.value = Mathf.Lerp(maxVignetteIntensity, initialVignette, t);
+            }
+
+            if (bloomComponent != null)
+            {
+                bloomComponent.intensity.value = Mathf.Lerp(maxBloomIntensity, initialBloom, t);
+            }
+
+            yield return null;
+        }
+
+        if (vignetteComponent != null)
+        {
+            vignetteComponent.intensity.value = initialVignette;
+        }
+
+        if (bloomComponent != null)
+        {
+            bloomComponent.intensity.value = initialBloom;
+        }
+
+        effectRoutine = null;
+    }
+
     private void HandleBagDestroyed(PunchingBag bag)
     {
         if (chain != null)
@@ -156,6 +251,7 @@ public class PunchBagGenerator : MonoBehaviour
             pointCounter.AddPoints(bag.PointsForDefeating);
             TotalPoints += bag.PointsForDefeating;
             bag.OnBagDestroyed -= HandleBagDestroyed;
+            bag.OnHit -= HandleBagHit;
         }
 
         if (respawnRoutine == null)
@@ -166,8 +262,6 @@ public class PunchBagGenerator : MonoBehaviour
     {
         while (oldBag != null)
             yield return null;
-
-        yield return new WaitForSeconds(respawnDelay);
 
         respawnRoutine = null;
         SpawnPunchingBag();

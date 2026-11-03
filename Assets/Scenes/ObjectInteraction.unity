@@ -1524,30 +1524,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1573551730682198410, guid: e6b9ef544c480224abec781e1afa7154, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1573551730682198410, guid: e6b9ef544c480224abec781e1afa7154, type: 3}
-      propertyPath: _forceKinematicDisabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1573551730682198410, guid: e6b9ef544c480224abec781e1afa7154, type: 3}
-      propertyPath: _kinematicWhileSelected
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3027675137642505429, guid: e6b9ef544c480224abec781e1afa7154, type: 3}
-      propertyPath: m_Mass
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3027675137642505429, guid: e6b9ef544c480224abec781e1afa7154, type: 3}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3027675137642505429, guid: e6b9ef544c480224abec781e1afa7154, type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5173853222066662322, guid: e6b9ef544c480224abec781e1afa7154, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1865,7 +1841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2287122166125135397, guid: 9f92f6f330464c04cab2cb34e453968f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2287122166125135397, guid: 9f92f6f330464c04cab2cb34e453968f, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1873,11 +1849,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2287122166125135397, guid: 9f92f6f330464c04cab2cb34e453968f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2287122166125135397, guid: 9f92f6f330464c04cab2cb34e453968f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2287122166125135397, guid: 9f92f6f330464c04cab2cb34e453968f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1885,43 +1861,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2287122166125135397, guid: 9f92f6f330464c04cab2cb34e453968f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 2287122166125135397, guid: 9f92f6f330464c04cab2cb34e453968f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2375341895165429630, guid: 9f92f6f330464c04cab2cb34e453968f, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2375341895165429630, guid: 9f92f6f330464c04cab2cb34e453968f, type: 3}
-      propertyPath: _throwWhenUnselected
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2375341895165429630, guid: 9f92f6f330464c04cab2cb34e453968f, type: 3}
-      propertyPath: _forceKinematicDisabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2375341895165429630, guid: 9f92f6f330464c04cab2cb34e453968f, type: 3}
-      propertyPath: _kinematicWhileSelected
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3395163420109724516, guid: 9f92f6f330464c04cab2cb34e453968f, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4705461984754596604, guid: 9f92f6f330464c04cab2cb34e453968f, type: 3}
-      propertyPath: m_Mass
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4705461984754596604, guid: 9f92f6f330464c04cab2cb34e453968f, type: 3}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4705461984754596604, guid: 9f92f6f330464c04cab2cb34e453968f, type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8298907042288356274, guid: 9f92f6f330464c04cab2cb34e453968f, type: 3}
       propertyPath: m_Name

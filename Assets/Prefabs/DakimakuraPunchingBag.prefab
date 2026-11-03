@@ -608,6 +608,8 @@ MonoBehaviour:
   PointsForDefeating: 5
   popUpTextPrefab: {fileID: 696911766723704950, guid: dbd63df09463703458144c7bb1accc6d, type: 3}
   multiplierColor: {r: 0.9056604, g: 0.41438237, b: 0.788233, a: 1}
+  hitSlowMoScale: 1
+  hitSlowMoDuration: 0.2
 --- !u!82 &5202964502664018032
 AudioSource:
   m_ObjectHideFlags: 0
