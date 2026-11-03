@@ -15,18 +15,22 @@ public class GrabGloves : MonoBehaviour
     Transform originalParent;
     bool isKinematic;
     bool hasGravity;
-
-  
+    public Vector3 heldRotation;
     void Update()
     {
-        if (held == null && OVRInput.GetDown(grabButton, controller))
+        if(held == null && OVRInput.GetDown(grabButton, controller))
         {
-            Grab();
+            
+                Grab();
+            
         }
         else if (held != null && OVRInput.GetDown(releaseButton, controller))
         {
-            Release();
+            
+                Release();
+            
         }
+
     }
     void Grab()
     {
@@ -58,25 +62,18 @@ public class GrabGloves : MonoBehaviour
         hasGravity = held.useGravity;
         held.isKinematic = true;
         held.useGravity = false;
-        held.transform.SetParent(transform, true); 
+        held.transform.SetParent(transform, true);
+        held.transform.localRotation = Quaternion.Euler(heldRotation.x, heldRotation.y, heldRotation.z);
     }
 
     void Release()
     {
         held.transform.SetParent(originalParent, true);
-
-        if (dropWithPhysics)
-        {
-            held.isKinematic = false;
-            held.useGravity = true;
-            held.linearVelocity = Vector3.zero;
-            held.angularVelocity = Vector3.zero;
-        }
-        else
-        {
-            held.isKinematic = isKinematic;
-            held.useGravity = hasGravity;
-        }
+        held.isKinematic = false;
+        held.useGravity = true;
+        held.linearVelocity = dropVelocity;
+        held.angularVelocity = Vector3.zero;
+        
         held = null;
     }
 }
