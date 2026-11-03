@@ -31,6 +31,7 @@ public class PunchBagGenerator : MonoBehaviour
 
     [Header("Timer managing")]
     public bool firstHitEfectuated = false;
+    [SerializeField] private GameTimer gameTimer;
 
     [Header("External Impact Effects (Vignette & Bloom)")]
     [SerializeField] private Volume postProcessVolume;
@@ -179,8 +180,7 @@ public class PunchBagGenerator : MonoBehaviour
         if (!firstHitEfectuated)
         {
             firstHitEfectuated = true;
-
-            // Start the timer here guillem
+            gameTimer.StartTimer();
         }
 
         if (effectRoutine != null)
