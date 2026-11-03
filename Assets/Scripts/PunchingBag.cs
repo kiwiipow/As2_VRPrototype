@@ -79,6 +79,7 @@ public class PunchingBag : MonoBehaviour
     }
 
     private const string TransparentKeyword = "_SURFACE_TYPE_TRANSPARENT";
+    private const float ChainProjectionDistance = 0.005f;
 
     private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
     private static readonly int SurfaceId = Shader.PropertyToID("_Surface");
@@ -105,6 +106,10 @@ public class PunchingBag : MonoBehaviour
     public bool IsDead => isDead;
     public ConfigurableJoint Joint => joint;
     public Vector3 HookWorldPosition => joint != null ? joint.transform.TransformPoint(joint.anchor) : transform.position;
+
+    [Header("Popup Text")]
+    [SerializeField] private PopupText popUpTextPrefab;
+    [SerializeField] private Color multiplierColor = Color.red;
 
     private void Awake()
     {
@@ -167,6 +172,13 @@ public class PunchingBag : MonoBehaviour
         joint.autoConfigureConnectedAnchor = false;
         joint.connectedBody = anchor;
         joint.connectedAnchor = anchor.transform.InverseTransformPoint(worldAnchor);
+
+        if (!anchor.isKinematic)
+        {
+            joint.enablePreprocessing = false;
+            joint.projectionMode = JointProjectionMode.PositionAndRotation;
+            joint.projectionDistance = ChainProjectionDistance;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -247,6 +259,16 @@ public class PunchingBag : MonoBehaviour
         PlayImpactEffects(speed, zoneMultiplier, lastHitDirection, worldPoint, gloveCollider);
 
         OnHit?.Invoke(new HitInfo(damage, speed, zoneMultiplier, lastHitDirection, worldPoint));
+
+        if (popUpTextPrefab != null)
+        {
+            PopupText popupInstance = Instantiate(popUpTextPrefab, worldPoint, Quaternion.identity);
+            popupInstance.SetText(damage.ToString());
+            if (zoneMultiplier > 1f)
+            {
+                popupInstance.ChangeColor(multiplierColor);
+            }
+        }
 
         if (currentDurability <= 0)
             Die();

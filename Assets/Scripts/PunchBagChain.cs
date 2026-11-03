@@ -4,41 +4,41 @@ using UnityEngine;
 public class PunchBagChain : MonoBehaviour
 {
     [Header("Shape")]
-    [Tooltip("Number of links between the ceiling anchor and the bag hook.")]
     [SerializeField, Min(1)] private int linkCount = 8;
 
-    [Tooltip("Length of each link in meters. Match it to the length of your link mesh (along its Y axis).")]
     [SerializeField, Min(0.01f)] private float linkLength = 0.12f;
 
-    [Tooltip("Thickness of the fallback capsule visual. Ignored when a link prefab is assigned.")]
     [SerializeField, Min(0.005f)] private float linkThickness = 0.025f;
 
-    [Tooltip("Where the chain starts, in the local space of the ceiling anchor.")]
     [SerializeField] private Vector3 anchorLocalOffset = Vector3.zero;
 
     [Header("Visuals")]
-    [Tooltip("Optional link model, authored along its Y axis. If empty, a plain capsule is used.")]
     [SerializeField] private GameObject linkPrefab;
 
-    [Tooltip("Material for the fallback capsule. Ignored when a link prefab is assigned.")]
     [SerializeField] private Material linkMaterial;
 
-    [Tooltip("Turns every second link 90 degrees around the chain so it reads as interlocked rings.")]
     [SerializeField] private bool alternateLinkRotation = true;
 
     [Header("Physics")]
-    [SerializeField, Min(0.001f)] private float linkMass = 0.5f;
-    [SerializeField, Min(0f)] private float linearDamping = 0.2f;
-    [SerializeField, Min(0f)] private float angularDamping = 0.5f;
+    [SerializeField, Min(0.001f)] private float linkMass = 1f;
+    [SerializeField, Min(0f)] private float linearDamping = 0.05f;
+    [SerializeField, Min(0f)] private float angularDamping = 0.25f;
 
-    [Tooltip("How far a link can bend relative to its neighbour, in degrees.")]
+    [Header("Unloaded Behaviour")]
+    [SerializeField, Min(1f)] private float unloadedGravityMultiplier = 3f;
+    [SerializeField, Min(0f)] private float unloadedLinearDamping = 0f;
+    [SerializeField, Min(0f)] private float unloadedAngularDamping = 0.1f;
+
     [SerializeField, Range(5f, 177f)] private float maxBendAngle = 80f;
 
-    [Tooltip("Higher values keep the chain stiffer and less jittery when a heavy bag hangs from it.")]
-    [SerializeField, Min(1)] private int solverIterations = 16;
-    [SerializeField, Min(1)] private int solverVelocityIterations = 8;
+    [SerializeField, Min(0.0005f)] private float projectionDistance = 0.005f;
+
+    [SerializeField, Min(1)] private int solverIterations = 32;
+    [SerializeField, Min(1)] private int solverVelocityIterations = 16;
 
     private readonly List<Rigidbody> links = new();
+
+    private bool isLoaded;
 
     public bool IsBuilt => links.Count > 0;
     public Rigidbody End => IsBuilt ? links[links.Count - 1] : null;
@@ -68,6 +68,34 @@ public class PunchBagChain : MonoBehaviour
             previous = link;
             previousConnectedAnchor = Vector3.down * (linkLength * 0.5f);
         }
+
+        ApplyDamping();
+    }
+
+    public void SetLoaded(bool loaded)
+    {
+        isLoaded = loaded;
+        ApplyDamping();
+    }
+
+    private void ApplyDamping()
+    {
+        foreach (Rigidbody link in links)
+        {
+            link.linearDamping = isLoaded ? linearDamping : unloadedLinearDamping;
+            link.angularDamping = isLoaded ? angularDamping : unloadedAngularDamping;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (isLoaded || unloadedGravityMultiplier <= 1f)
+            return;
+
+        Vector3 extraGravity = Physics.gravity * (unloadedGravityMultiplier - 1f);
+
+        foreach (Rigidbody link in links)
+            link.AddForce(extraGravity, ForceMode.Acceleration);
     }
 
     private Rigidbody CreateLink(int index, Vector3 position)
@@ -143,5 +171,6 @@ public class PunchBagChain : MonoBehaviour
         joint.enableCollision = false;
         joint.enablePreprocessing = false;
         joint.projectionMode = JointProjectionMode.PositionAndRotation;
+        joint.projectionDistance = projectionDistance;
     }
 }
