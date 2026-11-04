@@ -37,11 +37,14 @@ public class PunchBagGenerator : MonoBehaviour
     [SerializeField] private Volume postProcessVolume;
     [SerializeField, Range(0f, 1f)] private float maxVignetteIntensity = 0.5f;
     [SerializeField, Range(0f, 20f)] private float maxBloomIntensity = 2.5f;
+    [SerializeField, Range(0f, 1f)] private float maxAberrationIntensity = 0.2f;
     [SerializeField, Range(0.05f, 0.5f)] private float flashDuration = 0.15f;
 
     private Coroutine effectRoutine;
     private Vignette vignetteComponent;
     private Bloom bloomComponent;
+    private ChromaticAberration aberrationComponent;
+    private ColorAdjustments colorAdjComponent;
 
     private PunchingBag currentBag;
     private Coroutine respawnRoutine;
@@ -65,6 +68,13 @@ public class PunchBagGenerator : MonoBehaviour
             {
                 bloomComponent.intensity.overrideState = true;
             }
+
+            if (postProcessVolume.profile.TryGet(out aberrationComponent))
+            {
+                aberrationComponent.intensity.overrideState = true;
+            }
+
+            postProcessVolume.profile.TryGet(out colorAdjComponent);
         }
 
         if (spawnOnStart)
@@ -184,7 +194,7 @@ public class PunchBagGenerator : MonoBehaviour
         }
 
         if (effectRoutine != null)
-            StopCoroutine(effectRoutine);
+            return;
 
         effectRoutine = StartCoroutine(TriggerImpactEffectsRoutine());
     }
@@ -193,6 +203,11 @@ public class PunchBagGenerator : MonoBehaviour
     {
         float initialVignette = 0f;
         float initialBloom = 0f;
+        float initialAberration = 0f;
+
+        float initialSaturation = 0f;
+        float initialContrast = 0f;
+        float initialPostExposure = 0f;
 
         if (vignetteComponent != null)
         {
@@ -206,7 +221,25 @@ public class PunchBagGenerator : MonoBehaviour
             bloomComponent.intensity.value = maxBloomIntensity;
         }
 
-        yield return new WaitForSecondsRealtime(flashDuration);
+        if (aberrationComponent != null)
+        {
+            initialAberration = aberrationComponent.intensity.value;
+            aberrationComponent.intensity.value = maxAberrationIntensity;
+        }
+
+        if (colorAdjComponent != null)
+        {
+            colorAdjComponent.active = true;
+        }
+
+        yield return new WaitForSecondsRealtime(flashDuration * 0.05f);
+
+        if (colorAdjComponent != null)
+        {
+            colorAdjComponent.active = false;
+        }
+
+        yield return new WaitForSecondsRealtime(flashDuration * 0.95f);
 
         float elapsed = 0f;
         float fadeDuration = 0.2f;
@@ -225,6 +258,11 @@ public class PunchBagGenerator : MonoBehaviour
                 bloomComponent.intensity.value = Mathf.Lerp(maxBloomIntensity, initialBloom, t);
             }
 
+            if (aberrationComponent != null)
+            {
+                aberrationComponent.intensity.value = Mathf.Lerp(maxAberrationIntensity, initialAberration, t);
+            }
+
             yield return null;
         }
 
@@ -236,6 +274,11 @@ public class PunchBagGenerator : MonoBehaviour
         if (bloomComponent != null)
         {
             bloomComponent.intensity.value = initialBloom;
+        }
+
+        if (aberrationComponent != null)
+        {
+            aberrationComponent.intensity.value = initialAberration;
         }
 
         effectRoutine = null;
