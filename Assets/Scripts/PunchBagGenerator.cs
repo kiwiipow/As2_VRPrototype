@@ -205,10 +205,6 @@ public class PunchBagGenerator : MonoBehaviour
         float initialBloom = 0f;
         float initialAberration = 0f;
 
-        float initialSaturation = 0f;
-        float initialContrast = 0f;
-        float initialPostExposure = 0f;
-
         if (vignetteComponent != null)
         {
             initialVignette = vignetteComponent.intensity.value;
