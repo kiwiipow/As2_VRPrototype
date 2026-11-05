@@ -6,7 +6,11 @@ public class TimerVisualizer : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameTimer gameTimer;
     [SerializeField] private Image radialImage;
+
+    [Header("Audio")]
     [SerializeField] private AudioSource beep;
+    [SerializeField] private AudioSource fight;
+    [SerializeField] private AudioSource bell;
 
     [Header("Color Settings")]
     [SerializeField] private Color safeColor = Color.green;
@@ -26,6 +30,7 @@ public class TimerVisualizer : MonoBehaviour
     private Vector3 originalScale;
     private float pulseTimer;
     private bool wasPulsingLastFrame;
+    private bool timerHasStarted = false;
 
     void Start()
     {
@@ -48,12 +53,22 @@ public class TimerVisualizer : MonoBehaviour
     {
         if (radialImage == null || initialDuration <= 0) return;
 
+        // Detects the exact moment the timer starts running
+        if (!timerHasStarted && gameTimer.isRunning)
+        {
+            timerHasStarted = true;
+
+            if (fight != null) fight.Play();
+            if (bell != null) bell.Play();
+        }
+
         float timeRatio = Mathf.Clamp01(currentTime / initialDuration);
 
         radialImage.fillAmount = timeRatio;
 
         float activePulseThreshold = syncPulseWithColorStart ? colorTransitionStart : pulseStartThreshold;
 
+        // Color transition logic
         if (timeRatio > colorTransitionStart)
         {
             radialImage.color = safeColor;
@@ -85,6 +100,7 @@ public class TimerVisualizer : MonoBehaviour
 
             float linearDanger = 1f - (timeRatio / activePulseThreshold);
 
+            // Logarithmic curve mapping for smooth organic acceleration
             float dangerFactor = Mathf.Log(1f + 9f * linearDanger) / Mathf.Log(10f);
 
             float currentInterval = Mathf.Lerp(maxPulseInterval, minPulseInterval, dangerFactor);
@@ -120,8 +136,16 @@ public class TimerVisualizer : MonoBehaviour
             radialImage.color = safeColor;
             radialImage.transform.localScale = originalScale;
         }
+
         wasPulsingLastFrame = false;
         pulseTimer = 0f;
+        timerHasStarted = false; // Reset so sounds can trigger again if the timer is restarted
+
+        // Play bell when the timer ends
+        if (bell != null)
+        {
+            bell.Play();
+        }
     }
 
     private System.Collections.IEnumerator PulseAnimation(Transform target, float duration)
