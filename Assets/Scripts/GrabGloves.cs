@@ -10,12 +10,17 @@ public class GrabGloves : MonoBehaviour
     public LayerMask grabLayers = 0;
     public bool dropWithPhysics = true;
     public Vector3 dropVelocity = UnityEngine.Vector3.zero;
+    public Vector3 holdOffset = new Vector3(0f, 0f, -0.1f);
 
     Rigidbody held;
     Transform originalParent;
     bool isKinematic;
     bool hasGravity;
     public Vector3 heldRotation;
+
+    //Controller mesh refs
+    public SkinnedMeshRenderer[] leftMeshes;
+    public SkinnedMeshRenderer[] rightMeshes;
     void Update()
     {
         if(held == null && OVRInput.GetDown(grabButton, controller))
@@ -63,7 +68,25 @@ public class GrabGloves : MonoBehaviour
         held.isKinematic = true;
         held.useGravity = false;
         held.transform.SetParent(transform, true);
+        held.transform.localPosition = holdOffset;
         held.transform.localRotation = Quaternion.Euler(heldRotation.x, heldRotation.y, heldRotation.z);
+
+
+        if (controller == OVRInput.Controller.LTouch)
+        {
+            foreach (var m in leftMeshes)
+            {
+                if (m != null) m.enabled = false;
+            }
+
+        }
+        else if (controller == OVRInput.Controller.RTouch)
+        {
+            foreach (var m in rightMeshes)
+            {
+                if (m != null) m.enabled = false;
+            }
+        }
     }
 
     void Release()
@@ -75,5 +98,21 @@ public class GrabGloves : MonoBehaviour
         held.angularVelocity = Vector3.zero;
         
         held = null;
+
+        if (controller == OVRInput.Controller.LTouch)
+        {
+            foreach (var m in leftMeshes)
+            {
+                if (m != null) m.enabled = true;
+            }
+
+        }
+        else if (controller == OVRInput.Controller.RTouch)
+        {
+            foreach (var m in rightMeshes)
+            {
+                if (m != null) m.enabled = true;
+            }
+        }
     }
 }
