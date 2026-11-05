@@ -31,6 +31,9 @@ TagManager:
   - SamplesInfoPanel
   - QDSUIToggleCheckboxRadio
   - QDSUIToggleThumbnail
+  - BoxingGlove
+  - BrassKnuckles
+  - Ducks
   layers:
   - Default
   - TransparentFX

@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 2482617588826052006}
   m_Layer: 7
   m_Name: BoxingGlove_Right
-  m_TagString: Untagged
+  m_TagString: BoxingGlove
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
