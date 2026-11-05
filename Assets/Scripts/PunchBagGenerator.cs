@@ -30,7 +30,6 @@ public class PunchBagGenerator : MonoBehaviour
     [SerializeField] private PointCounter pointCounter;
 
     [Header("Timer managing")]
-    public bool firstHitEfectuated = false;
     [SerializeField] private GameTimer gameTimer;
 
     [Header("External Impact Effects (Vignette & Bloom)")]
@@ -187,9 +186,8 @@ public class PunchBagGenerator : MonoBehaviour
 
     private void HandleBagHit(PunchingBag.HitInfo hitInfo)
     {
-        if (!firstHitEfectuated)
+        if (!gameTimer.isRunning)
         {
-            firstHitEfectuated = true;
             gameTimer.StartTimer();
         }
 
