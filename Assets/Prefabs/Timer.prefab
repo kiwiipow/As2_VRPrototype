@@ -118,13 +118,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: b281cdad4d4e01541b92c2e97f58611d, type: 2}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!114 &5280036128018135695
@@ -147,7 +147,7 @@ MonoBehaviour:
   dangerRed: {r: 1, g: 0, b: 0, a: 1}
   colorTransitionStart: 0.5
   pulseStartThreshold: 0.25
-  maxPulseScale: 1.25
+  maxPulseScale: 1.15
   minPulseInterval: 0.1
   maxPulseInterval: 0.8
 --- !u!1 &3801706259330938251

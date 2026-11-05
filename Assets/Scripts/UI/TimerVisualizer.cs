@@ -5,7 +5,7 @@ public class TimerVisualizer : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameTimer gameTimer;
-    [SerializeField] private Image radialImage; 
+    [SerializeField] private Image radialImage;
 
     [Header("Color Settings")]
     [SerializeField] private Color safeColor = Color.green;
@@ -16,9 +16,9 @@ public class TimerVisualizer : MonoBehaviour
 
     [Header("Pop / Pulse Settings (End Game)")]
     [SerializeField] private float pulseStartThreshold = 0.25f;
-    [SerializeField] private float maxPulseScale = 1.25f;       
-    [SerializeField] private float minPulseInterval = 0.1f;   
-    [SerializeField] private float maxPulseInterval = 0.8f;   
+    [SerializeField] private float maxPulseScale = 1.25f;
+    [SerializeField] private float minPulseInterval = 0.1f;
+    [SerializeField] private float maxPulseInterval = 0.8f;
 
     private float initialDuration;
     private Vector3 originalScale;
@@ -30,6 +30,7 @@ public class TimerVisualizer : MonoBehaviour
         {
             initialDuration = gameTimer.timeRemaining;
             gameTimer.OnTimeChanged += UpdateVisual;
+            gameTimer.OnTimerEnded += HandleTimerEnded;
         }
 
         if (radialImage != null)
@@ -58,12 +59,12 @@ public class TimerVisualizer : MonoBehaviour
 
             if (colorProgress < 0.5f)
             {
-                float t = colorProgress * 2f; 
+                float t = colorProgress * 2f;
                 radialImage.color = Color.Lerp(warningYellow, warningOrange, t);
             }
             else
             {
-                float t = (colorProgress - 0.5f) * 2f; 
+                float t = (colorProgress - 0.5f) * 2f;
                 radialImage.color = Color.Lerp(warningOrange, dangerRed, t);
             }
         }
@@ -89,7 +90,15 @@ public class TimerVisualizer : MonoBehaviour
         }
     }
 
-    private System.Collections.IEnumerator System_IEnumerator_Placeholder() { yield return null; }
+    private void HandleTimerEnded()
+    {
+        if (radialImage != null)
+        {
+            radialImage.fillAmount = 1f;
+            radialImage.color = safeColor;
+            radialImage.transform.localScale = originalScale;
+        }
+    }
 
     private System.Collections.IEnumerator PulseAnimation(Transform target, float duration)
     {
@@ -122,6 +131,7 @@ public class TimerVisualizer : MonoBehaviour
         if (gameTimer != null)
         {
             gameTimer.OnTimeChanged -= UpdateVisual;
+            gameTimer.OnTimerEnded -= HandleTimerEnded;
         }
     }
 }
