@@ -4,6 +4,9 @@ using TMPro;
 
 public class PointCounter : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private GameTimer gameTimer;
+
     [Header("Score Settings")]
     [SerializeField] private int currentMainScore = 0;
     [SerializeField] private int pendingPoints = 0;
@@ -32,6 +35,11 @@ public class PointCounter : MonoBehaviour
         if (pendingPointsText != null)
         {
             pendingOriginalScale = pendingPointsText.transform.localScale;
+        }
+
+        if (gameTimer != null)
+        {
+            gameTimer.OnTimerEnded += HandleTimerEnded;
         }
 
         UpdateUI();
@@ -97,6 +105,21 @@ public class PointCounter : MonoBehaviour
         }
     }
 
+    private void HandleTimerEnded()
+    {
+        StartCoroutine(ResetPointsAfterDelay(3f));
+    }
+
+    private IEnumerator ResetPointsAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        currentMainScore = 0;
+        pendingPoints = 0;
+        isTransferring = false;
+        UpdateUI();
+    }
+
     private void UpdateUI()
     {
         if (mainScoreText != null)
@@ -141,5 +164,13 @@ public class PointCounter : MonoBehaviour
         }
 
         targetTransform.localScale = pendingOriginalScale;
+    }
+
+    void OnDestroy()
+    {
+        if (gameTimer != null)
+        {
+            gameTimer.OnTimerEnded -= HandleTimerEnded;
+        }
     }
 }
