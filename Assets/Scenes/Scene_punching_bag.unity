@@ -15730,6 +15730,18 @@ PrefabInstance:
       propertyPath: timeRemaining
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1404414395616571757, guid: 6a42bfeafcba9724c831e0ddec0b029e, type: 3}
+      propertyPath: m_Volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212496440964494722, guid: 6a42bfeafcba9724c831e0ddec0b029e, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3267907230686190143, guid: 6a42bfeafcba9724c831e0ddec0b029e, type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4673615183407792458, guid: 6a42bfeafcba9724c831e0ddec0b029e, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1

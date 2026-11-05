@@ -43,7 +43,6 @@ public class PunchBagGenerator : MonoBehaviour
     private Vignette vignetteComponent;
     private Bloom bloomComponent;
     private ChromaticAberration aberrationComponent;
-    private ColorAdjustments colorAdjComponent;
 
     private PunchingBag currentBag;
     private Coroutine respawnRoutine;
@@ -72,8 +71,6 @@ public class PunchBagGenerator : MonoBehaviour
             {
                 aberrationComponent.intensity.overrideState = true;
             }
-
-            postProcessVolume.profile.TryGet(out colorAdjComponent);
         }
 
         if (spawnOnStart)
@@ -223,19 +220,7 @@ public class PunchBagGenerator : MonoBehaviour
             aberrationComponent.intensity.value = maxAberrationIntensity;
         }
 
-        if (colorAdjComponent != null)
-        {
-            colorAdjComponent.active = true;
-        }
-
-        yield return new WaitForSecondsRealtime(flashDuration * 0.05f);
-
-        if (colorAdjComponent != null)
-        {
-            colorAdjComponent.active = false;
-        }
-
-        yield return new WaitForSecondsRealtime(flashDuration * 0.95f);
+        yield return new WaitForSecondsRealtime(flashDuration);
 
         float elapsed = 0f;
         float fadeDuration = 0.2f;
