@@ -7,6 +7,11 @@ public class TimerVisualizer : MonoBehaviour
     [SerializeField] private GameTimer gameTimer;
     [SerializeField] private Image radialImage;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource beep;
+    [SerializeField] private AudioSource fight;
+    [SerializeField] private AudioSource bell;
+
     [Header("Color Settings")]
     [SerializeField] private Color safeColor = Color.green;
     [SerializeField] private Color warningYellow = Color.yellow;
@@ -14,8 +19,9 @@ public class TimerVisualizer : MonoBehaviour
     [SerializeField] private Color dangerRed = Color.red;
     [SerializeField] private float colorTransitionStart = 0.5f;
 
-    [Header("Pop / Pulse Settings (End Game)")]
-    [SerializeField] private float pulseStartThreshold = 0.25f;
+    [Header("Pulse Settings")]
+    [SerializeField] private bool syncPulseWithColorStart = true;
+    [SerializeField] private float pulseStartThreshold = 0.5f;
     [SerializeField] private float maxPulseScale = 1.25f;
     [SerializeField] private float minPulseInterval = 0.1f;
     [SerializeField] private float maxPulseInterval = 0.8f;
@@ -23,6 +29,8 @@ public class TimerVisualizer : MonoBehaviour
     private float initialDuration;
     private Vector3 originalScale;
     private float pulseTimer;
+    private bool wasPulsingLastFrame;
+    private bool timerHasStarted = false;
 
     void Start()
     {
@@ -45,9 +53,19 @@ public class TimerVisualizer : MonoBehaviour
     {
         if (radialImage == null || initialDuration <= 0) return;
 
+        if (!timerHasStarted && gameTimer.isRunning)
+        {
+            timerHasStarted = true;
+
+            if (fight != null) fight.Play();
+            if (bell != null) bell.Play();
+        }
+
         float timeRatio = Mathf.Clamp01(currentTime / initialDuration);
 
         radialImage.fillAmount = timeRatio;
+
+        float activePulseThreshold = syncPulseWithColorStart ? colorTransitionStart : pulseStartThreshold;
 
         if (timeRatio > colorTransitionStart)
         {
@@ -69,9 +87,18 @@ public class TimerVisualizer : MonoBehaviour
             }
         }
 
-        if (timeRatio <= pulseStartThreshold && timeRatio > 0f)
+        bool isPulsingNow = (timeRatio <= activePulseThreshold && timeRatio > 0f);
+
+        if (isPulsingNow)
         {
-            float dangerFactor = 1f - (timeRatio / pulseStartThreshold);
+            if (!wasPulsingLastFrame)
+            {
+                pulseTimer = maxPulseInterval;
+            }
+
+            float linearDanger = 1f - (timeRatio / activePulseThreshold);
+
+            float dangerFactor = Mathf.Log(1f + 9f * linearDanger) / Mathf.Log(10f);
 
             float currentInterval = Mathf.Lerp(maxPulseInterval, minPulseInterval, dangerFactor);
 
@@ -82,12 +109,20 @@ public class TimerVisualizer : MonoBehaviour
 
                 float currentPopDuration = Mathf.Lerp(0.3f, 0.08f, dangerFactor);
                 StartCoroutine(PulseAnimation(radialImage.transform, currentPopDuration));
+
+                if (beep != null)
+                {
+                    beep.Play();
+                }
             }
         }
         else
         {
             radialImage.transform.localScale = originalScale;
+            pulseTimer = 0f;
         }
+
+        wasPulsingLastFrame = isPulsingNow;
     }
 
     private void HandleTimerEnded()
@@ -97,6 +132,15 @@ public class TimerVisualizer : MonoBehaviour
             radialImage.fillAmount = 1f;
             radialImage.color = safeColor;
             radialImage.transform.localScale = originalScale;
+        }
+
+        wasPulsingLastFrame = false;
+        pulseTimer = 0f;
+        timerHasStarted = false;
+
+        if (bell != null)
+        {
+            bell.Play();
         }
     }
 
