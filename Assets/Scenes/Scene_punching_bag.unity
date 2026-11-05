@@ -4277,29 +4277,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8223611024658902949, guid: e6b9ef544c480224abec781e1afa7154, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 777282461}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6b9ef544c480224abec781e1afa7154, type: 3}
---- !u!1 &777282460 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8223611024658902949, guid: e6b9ef544c480224abec781e1afa7154, type: 3}
-  m_PrefabInstance: {fileID: 777282459}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &777282461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777282460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55fd9d92043e1be40b1ceb6f78b75f29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GloveVelocityTracker
-  smoothing: 0.4
 --- !u!1 &784773154
 GameObject:
   m_ObjectHideFlags: 0
@@ -8624,14 +8603,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GrabGloves
   controller: 1
   grabButton: 8192
-  releaseButton: 1
-  grabRadius: 0
+  releaseButton: 16387
+  grabRadius: 0.05
   grabLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   dropWithPhysics: 1
   dropVelocity: {x: 0, y: 0, z: 0}
-  heldRotation: {x: 0, y: 0, z: 0}
+  heldRotation: {x: 90, y: 0, z: 180}
 --- !u!1 &1394601526
 GameObject:
   m_ObjectHideFlags: 0
@@ -10864,14 +10843,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GrabGloves
   controller: 2
   grabButton: 8192
-  releaseButton: 1
-  grabRadius: 0
+  releaseButton: 16387
+  grabRadius: 0.05
   grabLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   dropWithPhysics: 1
   dropVelocity: {x: 0, y: 0, z: 0}
-  heldRotation: {x: 0, y: 0, z: 0}
+  heldRotation: {x: 90, y: 0, z: 0}
 --- !u!1 &1693428910
 GameObject:
   m_ObjectHideFlags: 0
@@ -11300,14 +11279,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4007692643009802717, guid: f9f5a881043315140b4559ac396d96aa, type: 3}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4007692643009802717, guid: f9f5a881043315140b4559ac396d96aa, type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4862600095164492915, guid: f9f5a881043315140b4559ac396d96aa, type: 3}
       propertyPath: m_Name
       value: BrassKnuckle_Left
@@ -11728,29 +11699,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8298907042288356274, guid: 9f92f6f330464c04cab2cb34e453968f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1760078561}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f92f6f330464c04cab2cb34e453968f, type: 3}
---- !u!1 &1760078560 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8298907042288356274, guid: 9f92f6f330464c04cab2cb34e453968f, type: 3}
-  m_PrefabInstance: {fileID: 1760078559}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1760078561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1760078560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55fd9d92043e1be40b1ceb6f78b75f29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GloveVelocityTracker
-  smoothing: 0.4
 --- !u!1 &1773367130
 GameObject:
   m_ObjectHideFlags: 0
@@ -12763,14 +12713,6 @@ PrefabInstance:
     - target: {fileID: 1577862768142172180, guid: d0a64403301812941b3bc7e2b14f9b15, type: 3}
       propertyPath: m_Name
       value: BrassKnuckle_Right
-      objectReference: {fileID: 0}
-    - target: {fileID: 3903272012938788097, guid: d0a64403301812941b3bc7e2b14f9b15, type: 3}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3903272012938788097, guid: d0a64403301812941b3bc7e2b14f9b15, type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7688862211210029797, guid: d0a64403301812941b3bc7e2b14f9b15, type: 3}
       propertyPath: m_LocalPosition.x

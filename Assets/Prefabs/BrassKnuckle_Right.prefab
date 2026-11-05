@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3903272012938788097}
   - component: {fileID: 4140794355856880669}
   - component: {fileID: 4434825791914897371}
+  - component: {fileID: 2189178987859546367}
   m_Layer: 7
   m_Name: BrassKnuckle_Right
   m_TagString: Untagged
@@ -116,8 +117,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -165,6 +166,19 @@ MonoBehaviour:
   _kinematicWhileSelected: 1
   _throwWhenUnselected: 1
   _forceKinematicDisabled: 0
+--- !u!114 &2189178987859546367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577862768142172180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fd9d92043e1be40b1ceb6f78b75f29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GloveVelocityTracker
+  smoothing: 0.4
 --- !u!1 &8759856444363368220
 GameObject:
   m_ObjectHideFlags: 0

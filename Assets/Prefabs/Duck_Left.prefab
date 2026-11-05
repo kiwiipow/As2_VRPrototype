@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8009483740723533067}
   - component: {fileID: 4626336346464925413}
   - component: {fileID: 7731414745801766091}
+  - component: {fileID: 4169348663650300228}
   m_Layer: 7
   m_Name: Duck_Left
   m_TagString: Untagged
@@ -168,6 +169,19 @@ MonoBehaviour:
   _kinematicWhileSelected: 1
   _throwWhenUnselected: 1
   _forceKinematicDisabled: 0
+--- !u!114 &4169348663650300228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4186643760257090387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fd9d92043e1be40b1ceb6f78b75f29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GloveVelocityTracker
+  smoothing: 0.4
 --- !u!1 &8951455066430599401
 GameObject:
   m_ObjectHideFlags: 0

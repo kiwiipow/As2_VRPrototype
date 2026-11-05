@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 4705461984754596604}
   - component: {fileID: 2247653497469052959}
   - component: {fileID: 2375341895165429630}
+  - component: {fileID: 6178416799038657287}
   m_Layer: 7
   m_Name: BoxingGlove_Left
   m_TagString: Untagged
@@ -262,3 +263,16 @@ MonoBehaviour:
   _kinematicWhileSelected: 1
   _throwWhenUnselected: 1
   _forceKinematicDisabled: 1
+--- !u!114 &6178416799038657287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8298907042288356274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fd9d92043e1be40b1ceb6f78b75f29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GloveVelocityTracker
+  smoothing: 0.4
