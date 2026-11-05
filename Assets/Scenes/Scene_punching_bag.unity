@@ -12997,7 +12997,6 @@ MonoBehaviour:
   fadeInOnSpawn: 1
   TotalPoints: 0
   pointCounter: {fileID: 318337051}
-  firstHitEfectuated: 0
   gameTimer: {fileID: 1942512151}
   postProcessVolume: {fileID: 832575518}
   maxVignetteIntensity: 0.4
