@@ -53,7 +53,6 @@ public class TimerVisualizer : MonoBehaviour
     {
         if (radialImage == null || initialDuration <= 0) return;
 
-        // Detects the exact moment the timer starts running
         if (!timerHasStarted && gameTimer.isRunning)
         {
             timerHasStarted = true;
@@ -68,7 +67,6 @@ public class TimerVisualizer : MonoBehaviour
 
         float activePulseThreshold = syncPulseWithColorStart ? colorTransitionStart : pulseStartThreshold;
 
-        // Color transition logic
         if (timeRatio > colorTransitionStart)
         {
             radialImage.color = safeColor;
@@ -100,7 +98,6 @@ public class TimerVisualizer : MonoBehaviour
 
             float linearDanger = 1f - (timeRatio / activePulseThreshold);
 
-            // Logarithmic curve mapping for smooth organic acceleration
             float dangerFactor = Mathf.Log(1f + 9f * linearDanger) / Mathf.Log(10f);
 
             float currentInterval = Mathf.Lerp(maxPulseInterval, minPulseInterval, dangerFactor);
@@ -139,9 +136,8 @@ public class TimerVisualizer : MonoBehaviour
 
         wasPulsingLastFrame = false;
         pulseTimer = 0f;
-        timerHasStarted = false; // Reset so sounds can trigger again if the timer is restarted
+        timerHasStarted = false;
 
-        // Play bell when the timer ends
         if (bell != null)
         {
             bell.Play();

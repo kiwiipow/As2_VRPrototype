@@ -7,6 +7,9 @@ public class PointCounter : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameTimer gameTimer;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource points;
+
     [Header("Score Settings")]
     [SerializeField] private int currentMainScore = 0;
     [SerializeField] private int pendingPoints = 0;
@@ -87,6 +90,11 @@ public class PointCounter : MonoBehaviour
     {
         pendingPoints += amount;
         inactiveTimer = comboTimeMargin;
+
+        if (points != null)
+        {
+            points.Play();
+        }
 
         if (isTransferring)
         {

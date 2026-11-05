@@ -1719,6 +1719,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1980976244905190696, guid: 9f862c63f017dd547bf8c2113d6776ee, type: 3}
+      propertyPath: gameTimer
+      value: 
+      objectReference: {fileID: 1942512151}
     - target: {fileID: 5103719791379346275, guid: 9f862c63f017dd547bf8c2113d6776ee, type: 3}
       propertyPath: m_Name
       value: Tablet
