@@ -133,7 +133,7 @@ MonoBehaviour:
   compositionMode: 1
   enable3D: 0
   depthRange: 0.5
-  _overlayEnabled: 1
+  _overlayEnabled: 0
 --- !u!1 &2223237049460873544
 GameObject:
   m_ObjectHideFlags: 0
