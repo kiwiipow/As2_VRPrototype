@@ -188,6 +188,7 @@ public class PunchBagGenerator : MonoBehaviour
     {
         if (!gameTimer.isRunning)
         {
+            TotalPoints = 0;
             gameTimer.ResetTimer();
             gameTimer.StartTimer();
         }
@@ -303,5 +304,10 @@ public class PunchBagGenerator : MonoBehaviour
 
         respawnRoutine = null;
         SpawnPunchingBag();
+    }
+
+    public void ResetTotalPoints()
+    {
+        TotalPoints = 0;
     }
 }

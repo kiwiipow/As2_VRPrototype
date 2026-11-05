@@ -111,6 +111,11 @@ public class PunchingBag : MonoBehaviour
     [SerializeField] private PopupText popUpTextPrefab;
     [SerializeField] private Color multiplierColor = Color.red;
 
+    public static bool HitsBlocked;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStatics() => HitsBlocked = false;
+
     private void Awake()
     {
         currentDurability = maxDurability;
@@ -237,7 +242,7 @@ public class PunchingBag : MonoBehaviour
 
     public bool Hit(float speed, Vector3 direction, Vector3 worldPoint, Collider gloveCollider)
     {
-        if (isDead || isInvulnerable || Time.time < nextAllowedHitTime)
+        if (HitsBlocked || isDead || isInvulnerable || Time.time < nextAllowedHitTime)
             return false;
 
         if (speed < minHitSpeed)
