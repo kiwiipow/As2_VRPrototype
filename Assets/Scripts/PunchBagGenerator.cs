@@ -188,6 +188,7 @@ public class PunchBagGenerator : MonoBehaviour
     {
         if (!gameTimer.isRunning)
         {
+            gameTimer.ResetTimer();
             gameTimer.StartTimer();
         }
 

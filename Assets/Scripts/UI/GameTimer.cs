@@ -3,7 +3,6 @@ using UnityEngine;
 public class GameTimer : MonoBehaviour
 {
     [Header("Timer Settings")]
-    [Tooltip("Starting time in seconds.")]
     public float timeRemaining = 60f;
 
     [HideInInspector]
@@ -12,21 +11,31 @@ public class GameTimer : MonoBehaviour
     public System.Action<float> OnTimeChanged;
     public System.Action OnTimerEnded;
 
+    private float initialTime;
+
+    void Awake()
+    {
+        initialTime = timeRemaining;
+    }
+
     void Update()
     {
-        if (isRunning)
+        if (!isRunning) return;
+
+        if (timeRemaining > 0)
         {
-            if (timeRemaining > 0)
-            {
-                timeRemaining -= Time.deltaTime;
-                OnTimeChanged?.Invoke(timeRemaining);
-            }
-            else
+            timeRemaining -= Time.deltaTime;
+
+            if (timeRemaining <= 0)
             {
                 timeRemaining = 0;
                 isRunning = false;
 
                 OnTimerEnded?.Invoke();
+            }
+            else
+            {
+                OnTimeChanged?.Invoke(timeRemaining);
             }
         }
     }
@@ -43,10 +52,18 @@ public class GameTimer : MonoBehaviour
 
     public void ResetTimer(float newTime = -1f)
     {
+        isRunning = false;
+
         if (newTime >= 0)
         {
+            initialTime = newTime;
             timeRemaining = newTime;
         }
-        isRunning = false;
+        else
+        {
+            timeRemaining = initialTime;
+        }
+
+        OnTimeChanged?.Invoke(timeRemaining);
     }
 }
