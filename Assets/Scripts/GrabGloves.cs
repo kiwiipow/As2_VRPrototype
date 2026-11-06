@@ -68,6 +68,21 @@ public class GrabGloves : MonoBehaviour
         held.isKinematic = true;
         held.useGravity = false;
         held.transform.SetParent(transform, true);
+        switch (held.gameObject.tag)
+        {
+            case "BoxingGlove":
+                holdOffset = new Vector3(0, 0, -0.1f);
+                heldRotation = new Vector3(90, 0, 0);
+                break;
+            case "BrassKnuckles":
+                holdOffset = Vector3.zero;
+                heldRotation = new Vector3(0,360, 0);
+                break;
+            case "Ducks":
+                holdOffset = Vector3.zero;
+                heldRotation = new Vector3(-90, 0, -90);
+                break;
+        }
         held.transform.localPosition = holdOffset;
         held.transform.localRotation = Quaternion.Euler(heldRotation.x, heldRotation.y, heldRotation.z);
 

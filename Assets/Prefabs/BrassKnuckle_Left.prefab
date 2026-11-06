@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 228945776962405105}
   m_Layer: 7
   m_Name: BrassKnuckle_Left
-  m_TagString: Untagged
+  m_TagString: BrassKnuckles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

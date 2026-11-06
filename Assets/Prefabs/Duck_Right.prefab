@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 7775038999942271149}
   m_Layer: 7
   m_Name: Duck_Right
-  m_TagString: Untagged
+  m_TagString: Ducks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
